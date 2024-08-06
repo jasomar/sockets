@@ -24,6 +24,9 @@ class Servidor {
 
     // Rutas de mi app
     this.routes();
+
+    //sockets
+    this.sockets();
   }
 
   middlewares() {
@@ -37,6 +40,21 @@ class Servidor {
   // Rutas de mi app
   routes() {
     // this.app.use( this.paths.usuariosPath, router );
+  }
+
+  sockets() {
+    this.io.on('connection', (socket) => {
+      console.log(`a user connected ${socket.id}`);
+
+      socket.on('disconnect', () => {
+        console.log(`user disconnected${socket.id}`);
+      });
+
+
+      socket.on('send-message', (paypload) => {
+        console.log(paypload)
+      })
+    });
   }
 
   listen() {
