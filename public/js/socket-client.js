@@ -6,15 +6,18 @@ const btnSend = document.querySelector("#btnSend")
 const socket = io();
 
 socket.on('connect', () => {
-    console.log('conenctado')
     lblOffline.style.display = 'none'
     lblOnline.style.display = ''
 });
 
 socket.on('disconnect', () => {
-    console.log('disconnect')
     lblOffline.style.display = ''
     lblOnline.style.display = 'none'
+});
+
+
+socket.on('send-message', paypload => {
+    console.log(paypload)
 });
 
 btnSend.addEventListener('click', () => {
