@@ -44,15 +44,14 @@ class Servidor {
 
   sockets() {
     this.io.on('connection', (socket) => {
-      console.log(`a user connected ${socket.id}`);
 
       socket.on('disconnect', () => {
-        console.log(`user disconnected${socket.id}`);
       });
 
 
-      socket.on('send-message', (paypload) => {
-        console.log(paypload)
+      socket.on('send-message', (paypload, ) => {
+        this.io.emit("send-message", paypload)
+
       })
     });
   }
